@@ -1,11 +1,7 @@
 %declare INPUT_PATH 'hdfs:/Pig_Data/100linee.txt';
-%declare OUTPUT_PATH 'hdfs:/Pig_Data/user/hadoopanhdac/output/ex5/';
+%declare OUTPUT_PATH 'output/ex5';
 
-RAW_DATA = LOAD '$INPUT_PATH'
-        AS (ts:long, sport, dport, sip, dip,
-                l3proto, l4proto, flags,
-                phypkt, netpkt, overhead,
-                phybyte, netbyte:long);
+RAW_DATA = LOAD '$INPUT_PATH' AS (ts:long, sport, dport, sip, dip,l3proto, l4proto, flags,phypkt, netpkt, overhead,phybyte, netbyte:long);
 
 DATA = FOREACH RAW_DATA GENERATE sip, netbyte as upload;
 
