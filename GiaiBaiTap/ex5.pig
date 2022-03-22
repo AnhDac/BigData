@@ -1,7 +1,5 @@
-%declare INPUT_PATH 'hdfs:/Pig_Data/100linee.txt';
-%declare OUTPUT_PATH 'output/ex5';
 
-RAW_DATA = LOAD '$INPUT_PATH' AS (ts:long, sport, dport, sip, dip,l3proto, l4proto, flags,phypkt, netpkt, overhead,phybyte, netbyte:long);
+RAW_DATA = LOAD 'hdfs:/Pig_Data/100linee.txt' AS (ts:long, sport, dport, sip, dip,l3proto, l4proto, flags,phypkt, netpkt, overhead,phybyte, netbyte:long);
 
 DATA = FOREACH RAW_DATA GENERATE sip, netbyte as upload;
 
@@ -14,4 +12,4 @@ FLOW_JOIN = JOIN FLOW_UP_TOP100 BY ip, DATA BY sip;
 FLOW_JOIN_GROUP = GROUP FLOW_JOIN BY ip;
 RESULT = FOREACH FLOW_JOIN_GROUP GENERATE group, MAX(FLOW_JOIN.upload), (double)100 * MAX(FLOW_JOIN.upload) / MAX(FLOW_JOIN.sum_upload);
 
-STORE RESULT INTO '$OUTPUT_PATH';
+STORE RESULT INTO 'output/ex5';
