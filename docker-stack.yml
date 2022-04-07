@@ -8,7 +8,7 @@ services:
     networks:
       - frontend
     deploy:
-      replicas: 2
+      replicas: 3
       update_config:
         parallelism: 2
         delay: 10s
@@ -21,6 +21,7 @@ services:
     networks:
       - backend
     deploy:
+      replicas: 3
       placement:
         constraints: [node.role == manager]
   vote:
@@ -32,7 +33,7 @@ services:
     depends_on:
       - redis
     deploy:
-      replicas: 2
+      replicas: 3
       update_config:
         parallelism: 2
       restart_policy:
@@ -46,7 +47,7 @@ services:
     depends_on:
       - db
     deploy:
-      replicas: 1
+      replicas: 3
       update_config:
         parallelism: 2
         delay: 10s
@@ -60,7 +61,7 @@ services:
       - backend
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 3
       labels: [APP=VOTING]
       restart_policy:
         condition: on-failure
