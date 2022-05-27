@@ -1,0 +1,2 @@
+java -jar client.jar --server.port=9090
+sh spark-system.sh 192.168.0.104 9090
