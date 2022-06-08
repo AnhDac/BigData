@@ -4,7 +4,7 @@ data_game = LOAD '/Pig_Data/covid_19_clean_complete.csv' USING PigStorage(',') a
 
 data_filter = FILTER data_gamefull by Year > 2009;
 
-data_join = JOIN data_filter BY ID, data_sale BY ID;
+data_join = JOIN data_filter BY ID LEFT OUTER, data_sale BY ID;
 
 game_group =  Group data_join BY Genre; 
 
