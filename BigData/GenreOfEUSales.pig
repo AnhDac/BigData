@@ -1,6 +1,6 @@
-data_sale = LOAD '/home/hadoopanhdac/Desktop/BigData/game_sale.csv' USING PigStorage(',') as ( ID:int,Other_Sales:float,Global_Sales:float,NA_Sales:float,EU_Sales:float,JP_Sales:float);
+data_sale = LOAD '/DataBigData/game_sale.csv' USING PigStorage(',') as ( ID:int,Other_Sales:float,Global_Sales:float,NA_Sales:float,EU_Sales:float,JP_Sales:float);
 
-data_game = LOAD '/home/hadoopanhdac/Desktop/BigData/game.csv' USING PigStorage(',') as ( ID:int,Name:chararray,Platform:chararray,Year:int,Genre:chararray,Publisher:chararray);
+data_game = LOAD '/DataBigData/game.csv' USING PigStorage(',') as ( ID:int,Name:chararray,Platform:chararray,Year:int,Genre:chararray,Publisher:chararray);
 
 data_filter = FILTER data_game by Year > 2009;
 
